@@ -1,4 +1,4 @@
-# GitHub Issue Action
+# GitHub New Issue Action
 
 This action opens a new GitHub issue.
 
