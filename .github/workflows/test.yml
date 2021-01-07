@@ -27,5 +27,4 @@ jobs:
         body: Test body
         assignees: |
           bramiller1989
-          bramiller
 
