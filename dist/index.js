@@ -21,12 +21,12 @@ async function run() {
 
     if (check_exists) {
       const regex = /\s/g;
-      let q = title.replace(regex, '+') + "+in:titles:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
+      let q = title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
       issues = await octokit.rest.search.issuesAndPullRequests({
         q,
       });
-      core.info("issue exist response: " + JSON.stringify(issues));
 
+      core.info("issues found: " + JSON.stringify(issues));
       if (issues.data.total_count > 0) {
         return
       }
