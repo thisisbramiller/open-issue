@@ -13,7 +13,8 @@ async function run() {
     const octokit = github.getOctokit(token);
 
     if (check_exists) {
-      let q = title + ":title";
+      const regex = /\s/g;
+      let q = title.replace(regex, '+') + " in:title";
       issues = octokit.rest.search.issuesAndPullRequests({
         q,
       });
@@ -23,8 +24,6 @@ async function run() {
     core.info("issue exist response: " + JSON.stringify(issues));
 
     const response = await octokit.restg.issues.create({
-      // owner: github.context.repo.owner,
-      // repo: github.context.repo.repo,
       ...github.context.repo,
       title,
       body,
