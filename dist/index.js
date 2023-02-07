@@ -21,7 +21,7 @@ async function run() {
 
     if (check_exists) {
       const regex = /\s/g;
-      let q = title.replace(regex, '+') + "+in:title+repo:" + github.context.repo;
+      let q = title.replace(regex, '+') + "+in:title+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
       issues = await octokit.rest.search.issuesAndPullRequests({
         q,
       });
