@@ -19,7 +19,6 @@ async function run() {
       });
     }
     
-    
     core.setOutput("issue exist response: ", JSON.stringify(issues));
 
     const response = await octokit.issues.create({
