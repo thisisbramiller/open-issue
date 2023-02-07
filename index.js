@@ -15,7 +15,7 @@ async function run() {
     if (check_exists) {
       const regex = /\s/g;
       let q = title.replace(regex, '+') + "+in:title";
-      issues = octokit.rest.search.issuesAndPullRequests({
+      issues = await octokit.rest.search.issuesAndPullRequests({
         q,
       });
       core.info("issue exist response: " + JSON.stringify(issues));
@@ -28,7 +28,7 @@ async function run() {
       assignees: assignees ? assignees.split("\n") : undefined
     });
 
-    core.info("issue", JSON.stringify(response.data));
+    core.info("issue: " + JSON.stringify(response.data));
   } catch (error) {
     core.error(error.message);
   }
