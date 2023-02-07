@@ -26,7 +26,7 @@ async function run() {
         q,
       });
 
-      core.info("issues found: " + JSON.stringify(issues));
+      core.info("issues found: " + JSON.stringify(issues.data));
       if (issues.data.total_count > 0) {
         return
       }
