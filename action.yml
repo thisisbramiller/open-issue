@@ -9,6 +9,9 @@ inputs:
   title:
     description: Issue Title
     required: true
+  check_exists:
+    description: Check if Issue Title already exists
+    required: false
   body:
     description: Issue Body
     required: false

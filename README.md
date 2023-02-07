@@ -12,6 +12,10 @@ This action opens a new GitHub issue.
 
 **Required** Issue title
 
+### `check_exists`
+
+**Optional** Check if Issue title already exists
+
 ### `body`
 
 Issue body
