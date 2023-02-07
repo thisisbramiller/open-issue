@@ -26,7 +26,7 @@ async function run() {
       });
     }
     
-    core.setOutput("issue exist response: ", JSON.stringify(issues));
+    core.info("issue exist response: ", JSON.stringify(issues));
 
     const response = await octokit.issues.create({
       // owner: github.context.repo.owner,
@@ -37,9 +37,9 @@ async function run() {
       assignees: assignees ? assignees.split("\n") : undefined
     });
 
-    core.setOutput("issue", JSON.stringify(response.data));
+    core.info("issue", JSON.stringify(response.data));
   } catch (error) {
-    core.setFailed(error.message);
+    core.error(error.message);
   }
 }
 
