@@ -14,11 +14,15 @@ async function run() {
 
     if (check_exists) {
       const regex = /\s/g;
-      let q = title.replace(regex, '+') + "+in:title";
+      let q = title.replace(regex, '+') + "+in:title+repo:" + github.context.repo;
       issues = await octokit.rest.search.issuesAndPullRequests({
         q,
       });
       core.info("issue exist response: " + JSON.stringify(issues));
+
+      if (issues.data.total_count > 0) {
+        return
+      }
     }
 
     const response = await octokit.rest.issues.create({
