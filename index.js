@@ -17,11 +17,12 @@ async function run() {
       issues = octokit.rest.search.issuesAndPullRequests({
         q,
       });
+      core.info("Check exists to true")
     }
     
-    core.info("issue exist response: ", JSON.stringify(issues));
+    core.info("issue exist response: " + JSON.stringify(issues));
 
-    const response = await octokit.rest.issues.create({
+    const response = await octokit.restg.issues.create({
       // owner: github.context.repo.owner,
       // repo: github.context.repo.repo,
       ...github.context.repo,
