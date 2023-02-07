@@ -14,16 +14,14 @@ async function run() {
 
     if (check_exists) {
       const regex = /\s/g;
-      let q = title.replace(regex, '+') + " in:title";
+      let q = title.replace(regex, '+') + "+in:title";
       issues = octokit.rest.search.issuesAndPullRequests({
         q,
       });
-      core.info("Check exists to true")
+      core.info("issue exist response: " + JSON.stringify(issues));
     }
-    
-    core.info("issue exist response: " + JSON.stringify(issues));
 
-    const response = await octokit.restg.issues.create({
+    const response = await octokit.rest.issues.create({
       ...github.context.repo,
       title,
       body,
