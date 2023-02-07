@@ -21,7 +21,7 @@ async function run() {
     
     core.info("issue exist response: ", JSON.stringify(issues));
 
-    const response = await octokit.issues.create({
+    const response = await octokit.rest.issues.create({
       // owner: github.context.repo.owner,
       // repo: github.context.repo.repo,
       ...github.context.repo,
