@@ -26,7 +26,9 @@ async function run() {
       //check if exists
       //create issue
 
-      octokit.log("");
+      if (octokit) {
+        core.info("Octokit load")
+      }
       core.info("This is my issue: "+issue)
 
     });
