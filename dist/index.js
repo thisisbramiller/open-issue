@@ -35,7 +35,7 @@ async function run() {
         if (issues.data && issues.data.total_count > 0) {
           return
         }
-        
+
         //create issue
         const response = await octokit.rest.issues.create({
           ...github.context.repo,
@@ -44,7 +44,6 @@ async function run() {
           labels: issue.owner
         });
         core.info("Response from issue creation: " + JSON.stringify(response.data));
-
       } catch (error) {
         core.error(error.message);
       }
