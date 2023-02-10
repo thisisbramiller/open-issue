@@ -17,7 +17,6 @@ async function run() {
       core.info("This is my issue: "+issue)
 
     });
-
     // if (check_exists) {
     //   const regex = /\s/g;
     //   let q = title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
