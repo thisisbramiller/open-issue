@@ -17,35 +17,27 @@ async function run() {
 
     issues.forEach(issue => {
       //check if exists
-      //create issue
+      const regex = /\s/g;
+      let q = issue.title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
+      issues = octokit.rest.search.issuesAndPullRequests({
+        q,
+      });
 
-      if (octokit) {
-        core.info("Octokit load")
+      core.info("issues found: " + JSON.stringify(issues.data));
+      if (issues.data.total_count > 0) {
+        return
       }
-      core.info("This is my issue: "+issue)
+
+      //create issue
+      const response = octokit.rest.issues.create({
+        ...github.context.repo,
+        title: issue.title,
+        body: issue.message,
+        labels: issue.owner
+      });
+      core.info("Response from issue creation: " + JSON.stringify(response.data));
 
     });
-    // if (check_exists) {
-    //   const regex = /\s/g;
-    //   let q = title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
-    //   issues = await octokit.rest.search.issuesAndPullRequests({
-    //     q,
-    //   });
-
-    //   core.info("issues found: " + JSON.stringify(issues.data));
-    //   if (issues.data.total_count > 0) {
-    //     return
-    //   }
-    // }
-
-    // const response = await octokit.rest.issues.create({
-    //   ...github.context.repo,
-    //   title,
-    //   body,
-    //   assignees: assignees ? assignees.split("\n") : undefined
-    // });
-
-    // core.info("issue: " + JSON.stringify(response.data));
   } catch (error) {
     core.error(error.message);
   }
