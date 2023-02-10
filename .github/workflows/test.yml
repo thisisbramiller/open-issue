@@ -23,9 +23,5 @@ jobs:
     - uses: ./
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        title: Test title
-        body: Test body
-        check_exists: true
-        assignees: |
-          pipo02mix
-
+        issues: |
+          [{"title":"my title 1","owner":"team-test","message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index.md"},{"title":"my title 2","owner":"team-test","message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index2.md"}]

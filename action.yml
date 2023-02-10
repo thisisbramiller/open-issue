@@ -1,27 +1,14 @@
-name: Open New GitHub Issue
-author: bramiller1989
-description: Opens a GitHub issue
+name: Generate Issues based on input
+author: pipo02mix
+description: Opens a GitHub issue based on array
 
 inputs:
   token:
     description: GitHub Token
     required: true
-  title:
-    description: Issue Title
+  issues:
+    description: A JSON array with the issues
     required: true
-  check_exists:
-    description: Check if Issue Title already exists
-    required: false
-  body:
-    description: Issue Body
-    required: false
-  assignees:
-    description: Issue Assignees
-    required: false
-
-outputs:
-  issue: #id of output
-    description: The issue object as a json string
 
 runs:
   using: node12
