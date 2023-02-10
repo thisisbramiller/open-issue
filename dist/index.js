@@ -9,7 +9,6 @@ const core = __webpack_require__(2186);
 const github = __webpack_require__(5438);
 
 async function run() {
-  try {
     const token = core.getInput("token");
     const issuesJSON = core.getInput("issues");
     var issues = JSON.parse(issuesJSON)
@@ -22,33 +21,34 @@ async function run() {
       return
     }
 
-    issues.forEach(issue => {
-      //check if exists
-      const regex = /\s/g;
-      let q = issue.title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
-      core.info("Searching for issue: " + q);
-      issues = octokit.rest.search.issuesAndPullRequests({
-        q,
-      });
+    issues.forEach(async issue => {
+      try {
+        //check if exists
+        const regex = /\s/g;
+        let q = issue.title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
+        core.info("Searching for issue: " + q);
+        issues = await octokit.rest.search.issuesAndPullRequests({
+          q,
+        });
 
-      core.info("issues found: " + JSON.stringify(issues.data));
-      if (issues.data && issues.data.total_count > 0) {
-        return
+        core.info("issues found: " + JSON.stringify(issues.data));
+        if (issues.data && issues.data.total_count > 0) {
+          return
+        }
+        
+        //create issue
+        const response = await octokit.rest.issues.create({
+          ...github.context.repo,
+          title: issue.title,
+          body: issue.message,
+          labels: issue.owner
+        });
+        core.info("Response from issue creation: " + JSON.stringify(response.data));
+
+      } catch (error) {
+        core.error(error.message);
       }
-
-      //create issue
-      const response = octokit.rest.issues.create({
-        ...github.context.repo,
-        title: issue.title,
-        body: issue.message,
-        labels: issue.owner
-      });
-      core.info("Response from issue creation: " + JSON.stringify(response.data));
-
     });
-  } catch (error) {
-    core.error(error.message);
-  }
 }
 
 run();
