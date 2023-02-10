@@ -9,7 +9,7 @@ async function run() {
 
     const octokit = github.getOctokit(token);
 
-    issues.array.forEach(issue => {
+    issues.forEach(issue => {
       //check if exists
       //create issue
 
