@@ -16,7 +16,13 @@ async function run() {
 
     const octokit = github.getOctokit(token);
 
-    issues.array.forEach(issue => {
+    if (!issues || issues.length == 0) {
+      core.info("The issues var is empty: "+issues)
+      core.info("The issues JSON: "+issuesJSON)
+      return
+    }
+
+    issues.forEach(issue => {
       //check if exists
       //create issue
 
