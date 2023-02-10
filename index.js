@@ -3,7 +3,6 @@ const github = require("@actions/github");
 
 async function run() {
   try {
-    var issues = [];
     const token = core.getInput("token");
     const issuesJSON = core.getInput("issues");
     var issues = JSON.parse(issuesJSON)
@@ -14,6 +13,7 @@ async function run() {
       //check if exists
       //create issue
 
+      octokit.log("");
       core.info("This is my issue: "+issue)
 
     });
