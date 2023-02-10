@@ -19,12 +19,13 @@ async function run() {
       //check if exists
       const regex = /\s/g;
       let q = issue.title.replace(regex, '+') + "+in:title+is:issue+is:open+repo:" + github.context.repo.owner + "/" + github.context.repo.repo;
+      core.info("Searching for issue: " + q);
       issues = octokit.rest.search.issuesAndPullRequests({
         q,
       });
 
       core.info("issues found: " + JSON.stringify(issues.data));
-      if (issues.data.total_count > 0) {
+      if (issues.data && issues.data.total_count > 0) {
         return
       }
 
