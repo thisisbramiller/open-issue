@@ -1,42 +1,39 @@
 # GitHub New Issue Action
 
-This action opens a new GitHub issue.
+This action creates issues on targeted repo in case they not exists already.
 
 ## Inputs
 
 ### `token`
 
-**Required** GitHub token
+**Required** GitHub token with permissions for targeted repo
 
-### `title`
+### `issues`
 
-**Required** Issue title
+**Required** List of JSON issues that need to contain "title", "message" and "owner"
 
-### `check_exists`
+### `org`
 
-**Optional** Check if Issue title already exists
+Repository organization. If not passed used the one from workflow.
 
-### `body`
+### `repo`
 
-Issue body
-
-### `assignees`
-
-Issue assignees - Passed as a formatted multi-line string using the | character.
+Repository name. If not passed used the one from workflow.
 
 ## Outputs
 
-### `issue`
-
-The issue object as a JSON string
+There is not output but creation of GitHub Issues in targeted repository.
 
 ```yaml
-uses: bramiller1989/issue-action@v1
+uses: giant/issue-action@v1
 with:
-  token: ${{ secrets.GITHUB_TOKEN }}
-  title: Some Issue Title
-  body: Some Issue Body
-  assignees: |
-    bramiller
-    bramiller1989
+  token: ${{ secrets.ISSUE_AUTOMATION }} # access to target repo
+  org: giantswarm
+  repo: giantswarm
+  issues: |
+    [{
+      "title":"Issue title",
+      "owner":"Issue labels",
+      "message":"Issue message",
+    }]
 ```

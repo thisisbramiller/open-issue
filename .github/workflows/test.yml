@@ -23,7 +23,7 @@ jobs:
     - uses: ./
       with:
         token: ${{ secrets.ISSUE_AUTOMATION }}
-        org: giantswarm
-        repo: giantswarm
+        #org: giantswarm
+        #repo: giantswarm
         issues: |
-          [{"title":"fest test my title 1","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index.md"},{"title":"fer test my title 2","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index2.md"}]
+          [{"title":"fest test my title 1","owner":["team-test"],"message":"old page please check it"},{"title":"fer test my title 2","owner":["team-test"],"message":"old page please check it"}]
