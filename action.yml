@@ -1,4 +1,4 @@
-name: Generate Issues based on input
+name: Generate issues based on a list
 author: pipo02mix
 description: Opens a GitHub issue based on array
 
@@ -6,6 +6,12 @@ inputs:
   token:
     description: GitHub Token
     required: true
+  org: 
+    description: GitHub Organization
+    required: false
+  repo: 
+    description: GitHub Repository
+    required: false
   issues:
     description: A JSON array with the issues
     required: true
