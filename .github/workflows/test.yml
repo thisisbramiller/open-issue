@@ -23,5 +23,7 @@ jobs:
     - uses: ./
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        org: giantswarm
+        repo: giantswarm
         issues: |
-          [{"title":"my title 1","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index.md"},{"title":"my title 2","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index2.md"}]
+          [{"title":"fest test my title 1","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index.md"},{"title":"fer test my title 2","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index2.md"}]
