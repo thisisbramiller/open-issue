@@ -40,7 +40,7 @@ async function run() {
 
         //create issue
         const response = await octokit.rest.issues.create({
-          ...github.context.repo,
+          ...repoName,
           title: issue.title,
           body: issue.message,
           labels: issue.owner
