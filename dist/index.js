@@ -40,14 +40,15 @@ async function run() {
           q,
         });
 
-        core.info("issues found: " + JSON.stringify(issues.data));
+        core.info("Issues found: " + JSON.stringify(issues.data));
         if (issues.data && issues.data.total_count > 0) {
           return
         }
 
         //create issue
         const response = await octokit.rest.issues.create({
-          ...repoName,
+          owner: org,
+          repo: repoName,
           title: issue.title,
           body: issue.message,
           labels: issue.owner
