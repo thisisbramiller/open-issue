@@ -10,8 +10,9 @@ jobs:
   # unit tests
   units:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: npm ci
     - run: npm test
 
@@ -19,9 +20,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ./
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.ISSUE_AUTOMATION }}
+        #org: giantswarm
+        #repo: giantswarm
         issues: |
-          [{"title":"my title 1","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index.md"},{"title":"my title 2","owner":["team-test"],"message":"old page please check it","file":"src/content/getting-started/app-platform/create-catalog/index2.md"}]
+          [{"title":"fest test my title 1","owner":["team-test"],"message":"old page please check it"},{"title":"fer test my title 2","owner":["team-test"],"message":"old page please check it"}]
